@@ -21,4 +21,7 @@ public class Carro {
   public void setNome(String nome) {
     this.nome = nome;
   }
+
+  public void devolverCarro(Carro carroAlugavel) {
+  }
 }

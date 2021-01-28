@@ -4,30 +4,32 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 abstract class Animal {
-
-  public abstract void consultar();
+  public abstract void consulta();
 }
 
-class Cachorro extends Animal{
+class Cachorro extends Animal implements Comparable {
 
   @Override
-  public void consultar() {
-    System.out.println("consultando cachorro  ");
+  public void consulta() {
+    System.out.println("Consultando cachorro");
   }
 
-   }
+  @Override
+  public int compareTo(Object o) {
+    return 0;
+  }
+}
 
 class Gato extends Animal {
 
-
   @Override
-  public void consultar() {
-    System.out.println("consultando gato  ");
+  public void consulta() {
+    System.out.println("Consultando gato");
   }
 }
-public static class WindCardTeste {
+
+class WildCardTest {
   public static void main(String[] args) {
     Cachorro[] cachorros = {new Cachorro(), new Cachorro()};
     Gato[] gatos = {new Gato(), new Gato()};
@@ -40,7 +42,7 @@ public static class WindCardTeste {
 
     consultarAnimaisList(cachorroList);
     consultarAnimaisList(gatoList);
-    ordernarLista((List<? extends Comparable>) cachorroList);
+    ordernarLista(cachorroList);
   }
 
   public static void consultarAnimais(Animal[] animals) {
@@ -49,27 +51,22 @@ public static class WindCardTeste {
     }
 //        animals[1] = new Gato();
   }
-
   //type erasure | ?
-  public static void consultarAnimaisList(List<? extends Animal> animals) {
+  public static void consultarAnimaisList(List<? extends Animal> animals){
     for (Animal animal : animals) {
       animal.consulta();
     }
   }
-
-  public static void consultarCachorrosList(List<? super Cachorro> cachorroList) {
+  public static void consultarCachorrosList(List<? super Cachorro> cachorroList){
     Cachorro c1 = new Cachorro();
     Animal c2 = new Cachorro();
     Object o = new Cachorro();
     cachorroList.add(new Cachorro());
   }
 
-  public static void ordernarLista(List<? extends Comparable> lista) {
+  public static void ordernarLista(List<? extends Comparable> lista){
     Collections.sort(lista);
-
-
   }
+
 }
-
-
 
